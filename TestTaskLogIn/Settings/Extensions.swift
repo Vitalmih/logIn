@@ -30,7 +30,7 @@ extension String {
     
     enum Regex: String {
         case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z.]{2,64}"
-        case password = "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}"
+        case password = "[A-Za-z0-9.-]{6,64}"
     }
     
     func isValid(_ validType: ValidityType) -> Bool {
@@ -44,7 +44,6 @@ extension String {
             regex = Regex.password.rawValue
         }
         
-        NSPredicate(format: format, regex).evaluate(with: self)
-        return true
+        return NSPredicate(format: format, regex).evaluate(with: self)
     }
 }

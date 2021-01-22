@@ -28,7 +28,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="junior-ios-developer@mailinator.com" borderStyle="roundedRect" placeholder="Your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dtW-TJ-MZV">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dtW-TJ-MZV">
                                                 <rect key="frame" x="0.0" y="28" width="382" height="36.5"/>
                                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                 <color key="textColor" systemColor="systemIndigoColor"/>
@@ -56,7 +56,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="s4m8AJDbVvX4H8aF" borderStyle="roundedRect" placeholder="Your paswrod" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dch-SB-rbO">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your paswrod" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dch-SB-rbO">
                                                 <rect key="frame" x="0.0" y="28" width="382" height="36.5"/>
                                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                 <color key="textColor" systemColor="systemIndigoColor"/>
@@ -75,6 +75,12 @@
                                             <constraint firstItem="HfL-ic-LHG" firstAttribute="leading" secondItem="Hyh-0h-YBb" secondAttribute="leading" constant="5" id="vZl-nt-BFN"/>
                                         </constraints>
                                     </view>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not valid password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AM2-xU-AcA">
+                                        <rect key="frame" x="0.0" y="143" width="382" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" systemColor="systemPinkColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNe-4X-lTh">
@@ -123,6 +129,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTF" destination="dtW-TJ-MZV" id="Duy-Wi-9zy"/>
+                        <outlet property="passwordError" destination="AM2-xU-AcA" id="Bqb-iR-fsb"/>
                         <outlet property="passwordTF" destination="dch-SB-rbO" id="aIf-jg-jh7"/>
                         <outlet property="signInButton" destination="BJb-tQ-5Jr" id="3yr-Fe-Vt9"/>
                     </connections>
@@ -131,7 +138,39 @@
             </objects>
             <point key="canvasLocation" x="139" y="131"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
+        <scene sceneID="fc9-hZ-Qs0">
+            <objects>
+                <viewController id="AsB-8L-pzj" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p2S-Sk-EHS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="c9X-Hm-dGw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="GdO-eT-EdL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ppd-3R-g00" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="683" y="908"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="K0m-Ky-wJE">
+            <objects>
+                <viewController id="dFw-V2-ffX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hjy-19-lx6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="HiJ-yZ-aAP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="QZA-ie-w7I"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AWE-x9-iux" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2599" y="907"/>
+        </scene>
+        <!--Log Out View Controller-->
         <scene sceneID="WWL-6o-QwZ">
             <objects>
                 <viewController storyboardIdentifier="LogOutViewController" modalPresentationStyle="fullScreen" id="frS-QK-MpD" customClass="LogOutViewController" customModule="TestTaskLogIn" customModuleProvider="target" sceneMemberID="viewController">
@@ -157,17 +196,17 @@
                         <viewLayoutGuide key="safeArea" id="MWz-bM-FzC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="4N4-SB-4WX"/>
+                    <tabBarItem key="tabBarItem" image="restart" catalog="system" id="4N4-SB-4WX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5f-gY-TPa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="CIO-c4-cic" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2255.072463768116" y="148.66071428571428"/>
+            <point key="canvasLocation" x="1667" y="907"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WgB-cN-Has">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="eUZ-yq-a2d" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="LogOutTabBarController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="eUZ-yq-a2d" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7R3-yz-MqG">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -176,14 +215,17 @@
                     </tabBar>
                     <connections>
                         <segue destination="frS-QK-MpD" kind="relationship" relationship="viewControllers" id="zt4-Yw-0An"/>
+                        <segue destination="AsB-8L-pzj" kind="relationship" relationship="viewControllers" id="D6S-9a-19p"/>
+                        <segue destination="dFw-V2-ffX" kind="relationship" relationship="viewControllers" id="ehJ-5Z-9tn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fON-j5-LQq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344.9275362318842" y="148.66071428571428"/>
+            <point key="canvasLocation" x="1667" y="131"/>
         </scene>
     </scenes>
     <resources>
+        <image name="restart" catalog="system" width="120" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -192,6 +234,9 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

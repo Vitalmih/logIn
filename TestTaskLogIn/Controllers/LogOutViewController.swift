@@ -9,7 +9,6 @@ import UIKit
 
 class LogOutViewController: UIViewController {
 
-   
     @IBAction func logOutButtonPressed(_ sender: UIButton) {
         let keyChain = KeychainSwift()
         keyChain.delete("userToken")
