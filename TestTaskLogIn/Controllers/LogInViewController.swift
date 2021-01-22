@@ -18,6 +18,9 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         authManager?.delegate = self
+        emailTF.delegate = self
+        passwordTF.delegate = self
+        setupTextField()
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
@@ -35,6 +38,28 @@ class LogInViewController: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "LogOutViewController") as! LogOutViewController
         present(vc, animated: true, completion: nil)
     }
+    
+    private func setupTextField() {
+        emailTF.addTarget(self, action: #selector(handleTextChangeEmail), for: .editingChanged)
+        passwordTF.addTarget(self, action: #selector(handleTextChangeEmail), for: .editingChanged)
+    }
+    
+    @objc private func handleTextChangeEmail() {
+        guard let emailText = emailTF.text, let passwordText = passwordTF.text else { return }
+        print(emailText)
+        
+        if emailText.isValid(.email) {
+            print("Valid email")
+        } else {
+            print("Not valid")
+        }
+        
+        if passwordText.isValid(.password) {
+            print("Valid password")
+        } else {
+            print("Not valid password")
+        }
+    }
 }
 
 extension LogInViewController: AuthenticationManagerDelegate {
@@ -47,5 +72,11 @@ extension LogInViewController: AuthenticationManagerDelegate {
         let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension LogInViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true
     }
 }

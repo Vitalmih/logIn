@@ -20,3 +20,31 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+extension String {
+    
+    enum ValidityType {
+        case email
+        case password
+    }
+    
+    enum Regex: String {
+        case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z.]{2,64}"
+        case password = "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{6,}"
+    }
+    
+    func isValid(_ validType: ValidityType) -> Bool {
+        let format = "SELF MATCHES %@"
+        var regex = ""
+        
+        switch validType {
+        case .email:
+            regex = Regex.email.rawValue
+        case .password:
+            regex = Regex.password.rawValue
+        }
+        
+        NSPredicate(format: format, regex).evaluate(with: self)
+        return true
+    }
+}
