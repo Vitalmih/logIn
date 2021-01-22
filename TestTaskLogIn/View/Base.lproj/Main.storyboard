@@ -93,7 +93,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Sign In"/>
                                         <connections>
-                                            <action selector="signInButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WvV-ik-RG0"/>
+                                            <action selector="signInButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cak-Vo-KCK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -124,6 +124,7 @@
                     <connections>
                         <outlet property="emailTF" destination="dtW-TJ-MZV" id="Duy-Wi-9zy"/>
                         <outlet property="passwordTF" destination="dch-SB-rbO" id="aIf-jg-jh7"/>
+                        <outlet property="signInButton" destination="BJb-tQ-5Jr" id="3yr-Fe-Vt9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

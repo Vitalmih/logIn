@@ -22,12 +22,12 @@ class LogInViewController: UIViewController {
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         signIn()
-        transition()
+        
     }
     
     private func signIn() {
         guard let email = emailTF.text, let password = passwordTF.text else { return }
-        authManager?.fetch(email: email, password: password)
+        authManager?.logIn(with: email, password: password)
     }
     
     private func transition() {
@@ -38,15 +38,14 @@ class LogInViewController: UIViewController {
 }
 
 extension LogInViewController: AuthenticationManagerDelegate {
+    func didGetUser(_ user: UserDataModel) {
+        transition()
+    }
+    
     
     func didFailWithError(error: Error) {
-        //
-        //        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        //        alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: nil))
-        //        self.present(alert, animated: true, completion: nil)
-        //        self.signInButton.isHighlighted = true
-        //        self.signInButton.isEnabled = false
-        
-        print(error.localizedDescription)
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

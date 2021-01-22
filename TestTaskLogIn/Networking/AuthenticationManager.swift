@@ -11,11 +11,12 @@ protocol AuthenticationManagerProtocol {
     var dataTask: URLSessionDataTask? { get }
     var delegate: AuthenticationManagerDelegate? { get set }
     
-    func fetch(email: String, password: String)
+    func logIn(with email: String, password: String)
 }
 
 protocol AuthenticationManagerDelegate {
     func didFailWithError(error: Error)
+    func didGetUser(_ user: UserDataModel)
 }
 
 enum HTTPmethods: String {
@@ -23,6 +24,12 @@ enum HTTPmethods: String {
     case PUT
     case GET
     case DELETE
+}
+
+enum Parametrs: String {
+    case email
+    case password
+    case projectId = "project_id"
 }
 
 class AuthenticationManager: AuthenticationManagerProtocol {
@@ -33,13 +40,13 @@ class AuthenticationManager: AuthenticationManagerProtocol {
     private let requestLink = "https://api-qa.mvpnow.io/v1/sessions"
     private let projectId = "58b3193b-9f15-4715-a1e3-2e88e375f62b"
     
-    func fetch(email: String, password: String) {
+    func logIn(with email: String, password: String) {
         performRequest(urlString: requestLink, email: email, password: password)
     }
     
     private func performRequest(urlString: String, email: String, password: String) {
         guard let url = URL(string: requestLink) else { return }
-        let parametrs = ["email": email, "password": password, "project_id": projectId]
+        let parametrs = [Parametrs.email.rawValue: email, Parametrs.password.rawValue: password, Parametrs.projectId.rawValue: projectId]
         
         var request = URLRequest(url: url)
         request.httpMethod = HTTPmethods.POST.rawValue
@@ -50,8 +57,10 @@ class AuthenticationManager: AuthenticationManagerProtocol {
         
         let session = URLSession.shared
         dataTask = session.dataTask(with: request) { (data, response, error) in
-            if error != nil {
-                self.delegate?.didFailWithError(error: error!)
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.delegate?.didFailWithError(error: error)
+                }
             }
             
             if let safeData = data {
@@ -65,10 +74,12 @@ class AuthenticationManager: AuthenticationManagerProtocol {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(UserDataModel.self, from: data)
-            print(decodedData.token)
             let keyChain = KeychainSwift()
             let token = decodedData.token
             keyChain.set(token, forKey: "userToken")
+            DispatchQueue.main.async {
+                self.delegate?.didGetUser(decodedData)
+            }
         } catch {
             DispatchQueue.main.async {
                 self.delegate?.didFailWithError(error: error)
